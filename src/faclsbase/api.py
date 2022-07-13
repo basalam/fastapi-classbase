@@ -15,7 +15,7 @@ class BaseAPI(BaseModel):
 
 
 class API(ModelMetaclass):
-    def __new__(cls, _, __, dct):
-        class_ = super().__new__(cls, _, (BaseAPI, ), dct)
+    def __new__(cls, _, bases, dct):
+        class_ = super().__new__(cls, _, (*bases, BaseAPI), dct)
         return makefun.create_function(
             signature(class_), lambda *args, **kwargs: class_(*args, **kwargs).run(), class_.__name__)
