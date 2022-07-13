@@ -1,7 +1,9 @@
 # FastAPI ClassBase API
 
 
-## install `pip install git+https://github.com/omidekz/fastapi-classbase`
+### install
+    pip install git+https://github.com/omidekz/fastapi-classbase
+
 ## Usage
 ```py
 from fastapi import FastAPI
