@@ -8,7 +8,7 @@ from pydantic.main import ModelMetaclass
 class BaseAPI(BaseModel):
     class Config:
         arbitrary_types_allowed = True
-        extra = 'allow'
+        extra = 'ignore'
 
     def run(self):
         raise NotImplementedError
