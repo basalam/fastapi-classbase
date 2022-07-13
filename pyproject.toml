@@ -23,6 +23,3 @@ requires-python = ">=3.6"
 
 [project.urls]
 Homepage = "https://github.com/omidekz/fastapi-classbase"
-
-[project.scripts]
-realpython = "reader.__main__:main"
