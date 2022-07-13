@@ -1,10 +1,11 @@
 # FastAPI ClassBase API
 
 
+## install `pip install git+https://github.com/omidekz/fastapi-classbase`
 ## Usage
 ```py
 from fastapi import FastAPI
-from faclassbase import API
+from faclsbase import API
 from typing import Literal
 
 
@@ -22,7 +23,21 @@ class TestAPI(metaclass=API):
 
     def run(self):
         return f'={self.ops[self.op](a, b)}'
-
-
-app.run()
 ```
+
+# inheritance
+````py
+from faclsbase import API, BaseAPI as _BaseAPI
+from typing import ClassVar
+
+
+app = ...
+
+
+class BaseAPI(_BaseAPI):
+    repo: ClassVar[object] = None
+
+
+@app.get('...')
+class XAPI(BaseAPI, metaclass=API):
+    ...
