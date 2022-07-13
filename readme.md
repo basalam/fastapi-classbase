@@ -3,15 +3,15 @@
 
 ## Usage
 ```py
-from fastapi import APIRouter
+from fastapi import FastAPI
 from faclassbase import API
 from typing import Literal
 
 
-router = APIRouter(prefix='/api')
+app = FastAPI()
 
 
-@router.get('/simple-calc')
+@app.get('/simple-calc')
 class TestAPI(metaclass=API):
     a: float
     b: float
@@ -22,4 +22,7 @@ class TestAPI(metaclass=API):
 
     def run(self):
         return f'={self.ops[self.op](a, b)}'
+
+
+app.run()
 ```
