@@ -20,7 +20,7 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    package_dir = {"faclassbase": "faclassbase"},
+    package_dir = {"": "faclassbase"},
     packages = setuptools.find_packages(where="faclassbase"),
     python_requires = ">=3.6"
 )
