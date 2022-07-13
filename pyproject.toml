@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "fastapi-classbase"
-version = "0.1.0"
+version = "0.1.1"
 description = "FastAPI ClassBase API"
 readme = "readme.md"
 authors = [{ name = "omidekz", email = "omidekz@gmail.com" }]
