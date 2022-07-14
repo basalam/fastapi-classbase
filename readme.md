@@ -12,6 +12,7 @@ from faclsbase import API, BaseAPI
 from typing import List
 from pydantic import Field
 
+
 app = FastAPI()
 
 
@@ -34,17 +35,16 @@ class SumAPI2(BaseAPI): # THIS CLASS IS NOT EXTENDABLE TOO
 
 ```py
 from faclsbase import API, BaseAPI as _BaseAPI
-from typing import ClassVar
 
 
 app = ...
 
 
 class BaseAPI(_BaseAPI):
-    repo: ClassVar[object] = None
+    ...
 
 
 @app.get('...')
 class XAPI(BaseAPI, metaclass=API):
-    pass
+    ...
 ```
