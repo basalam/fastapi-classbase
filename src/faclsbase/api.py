@@ -1,7 +1,7 @@
 from inspect import signature
 import makefun
 from pydantic.main import ModelMetaclass
-from .base_api import BaseAPI
+from base_api import BaseAPI
 
 
 class API(ModelMetaclass):
@@ -22,4 +22,4 @@ class API(ModelMetaclass):
         if BaseAPI not in bases:
             bases = bases + [BaseAPI]
         class_ = super().__new__(cls, _, tuple(bases), dct)
-        return cls.convert__init__to_instantiate_and_call_run_lambda(class_)
+        return cls.convert__init__to_instantiate_and_call_run(class_)
