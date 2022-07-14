@@ -6,6 +6,7 @@
 
 ## Usage
 
+`API` and `BASEAPI` is subclass of `pydantic.BaseModel`; so your knife've been sharpened
 ```py
 from fastapi import FastAPI, Query
 from faclsbase import API, BaseAPI
