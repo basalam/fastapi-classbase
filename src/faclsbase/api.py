@@ -1,7 +1,10 @@
 from inspect import signature
 import makefun
 from pydantic.main import ModelMetaclass
-from base_api import BaseAPI
+try:
+    from .base_api import BaseAPI
+except:
+    from base_api import BaseAPI
 
 
 class API(ModelMetaclass):
