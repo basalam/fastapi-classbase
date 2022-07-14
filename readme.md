@@ -16,11 +16,16 @@ app = FastAPI()
 
 
 @app.get('/simple-calc')
-class SumAPI(metaclass=API):
+class SumAPI(metaclass=API): # THIS CLASS IS NOT EXTENDABLE
     numbers: List[int] = Field(Query(None))
 
     def run(self):
         return f'={sum(self.numbers)}'
+
+# or
+@app.get('/simple-calc-deco')
+@API.decorator
+class 
 ```
 
 ## inheritance

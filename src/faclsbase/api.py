@@ -31,5 +31,4 @@ class API(ModelMetaclass):
 
     @classmethod
     def decorator(cls, class_):
-        _deco = cls.convert__init__to_instantiate_and_call_run(class_)
-        return _deco
+        return  cls.convert__init__to_instantiate_and_call_run(class_)
