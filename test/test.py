@@ -4,7 +4,7 @@ from api import API, BaseAPI
 
 class UnitTests(TestCase):
     def test_api_deco(self):
-        @API.decorator
+        @API.classic
         class t1:
             def __init__(self, name: str):self.name = name
             def run(self): return self.name

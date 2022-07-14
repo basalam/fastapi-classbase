@@ -24,7 +24,7 @@ class SumAPI(metaclass=API): # THIS CLASS IS NOT EXTENDABLE
 
 # or
 @app.get('/simple-calc-deco')
-@API.decorator
+@API.classic
 class SumAPI2(BaseAPI): # THIS CLASS IS NOT EXTENDABLE TOO
     numbers: List[int] = Field(Query(None))
     run = lambda self: f'{=sum(self.numbers)}'
