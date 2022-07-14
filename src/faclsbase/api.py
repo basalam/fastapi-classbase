@@ -1,3 +1,4 @@
+import inspect
 import makefun
 from pydantic.main import ModelMetaclass
 try:
@@ -17,7 +18,7 @@ class API(ModelMetaclass):
     def convert__init__to_instantiate_and_call_run(_class):
         generic_instantiate_and_call_run = lambda **kwargs: _class(**kwargs).run()
         return makefun.create_function(
-            func_signature=_class.__signature__,
+            func_signature=inspect.signature(_class),
             func_impl=generic_instantiate_and_call_run,
             func_name=_class.__name__)
 
