@@ -8,7 +8,7 @@
 
 ```py
 from fastapi import FastAPI, Query
-from faclsbase import API
+from faclsbase import API, BaseAPI
 from typing import List
 from pydantic import Field
 
