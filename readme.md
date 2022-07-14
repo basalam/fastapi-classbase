@@ -1,10 +1,11 @@
 # FastAPI ClassBase API
 
+## install
 
-### install
-    pip install git+https://github.com/omidekz/fastapi-classbase
+`pip install git+https://github.com/omidekz/fastapi-classbase`
 
 ## Usage
+
 ```py
 from fastapi import FastAPI, Query
 from faclsbase import API
@@ -22,8 +23,9 @@ class SumAPI(metaclass=API):
         return f'={sum(self.numbers)}'
 ```
 
-# inheritance
-````py
+## inheritance
+
+```py
 from faclsbase import API, BaseAPI as _BaseAPI
 from typing import ClassVar
 
@@ -37,4 +39,11 @@ class BaseAPI(_BaseAPI):
 
 @app.get('...')
 class XAPI(BaseAPI, metaclass=API):
-    ...
+    pass
+```
+
+## or
+
+```py
+
+```

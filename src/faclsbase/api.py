@@ -1,6 +1,7 @@
 import inspect
 import makefun
 from pydantic.main import ModelMetaclass
+from functools import wraps
 try:
     from .base_api import BaseAPI
 except:
@@ -13,13 +14,13 @@ class API(ModelMetaclass):
         coverts `__init__` to a function to call `__init__()` and return `obj.run()`
 
     """
+    generic_instantiate_and_call_run = lambda _class: lambda **kwargs: _class(**kwargs).run()
 
     @staticmethod
     def convert__init__to_instantiate_and_call_run(_class):
-        generic_instantiate_and_call_run = lambda **kwargs: _class(**kwargs).run()
         return makefun.create_function(
             func_signature=inspect.signature(_class),
-            func_impl=generic_instantiate_and_call_run,
+            func_impl=API.generic_instantiate_and_call_run(_class),
             func_name=_class.__name__)
 
     def __new__(cls, _, bases, dct):
@@ -27,3 +28,8 @@ class API(ModelMetaclass):
             bases = (*bases, BaseAPI)
         class_ = super().__new__(cls, _, bases, dct)
         return cls.convert__init__to_instantiate_and_call_run(class_)
+
+    @classmethod
+    def deco(cls, class_):
+        _deco = cls.convert__init__to_instantiate_and_call_run(class_)
+        return _deco

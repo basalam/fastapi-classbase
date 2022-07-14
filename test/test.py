@@ -3,6 +3,13 @@ from api import API, BaseAPI
 
 
 class UnitTests(TestCase):
+    def test_api_deco(self):
+        @API.deco
+        class t1:
+            def __init__(self, name: str):self.name = name
+            def run(self): return self.name
+        self.assertEqual(t1(name='omid'), 'omid')
+
     def test_essentials(self):
         class t1(metaclass=API):
             name: str
