@@ -1,13 +1,9 @@
-from inspect import signature
 import makefun
 from pydantic.main import ModelMetaclass
 try:
     from .base_api import BaseAPI
 except:
     from base_api import BaseAPI
-
-
-extract_signature = signature
 
 
 class API(ModelMetaclass):
@@ -20,15 +16,13 @@ class API(ModelMetaclass):
     @staticmethod
     def convert__init__to_instantiate_and_call_run(_class):
         generic_instantiate_and_call_run = lambda **kwargs: _class(**kwargs).run()
-        sign = extract_signature(_class)
         return makefun.create_function(
-            func_signature=sign,
+            func_signature=_class.__signature__,
             func_impl=generic_instantiate_and_call_run,
             func_name=_class.__name__)
 
     def __new__(cls, _, bases, dct):
-        bases = list(bases)
         if BaseAPI not in bases:
-            bases = bases + [BaseAPI]
-        class_ = super().__new__(cls, _, tuple(bases), dct)
+            bases = (*bases, BaseAPI)
+        class_ = super().__new__(cls, _, bases, dct)
         return cls.convert__init__to_instantiate_and_call_run(class_)
