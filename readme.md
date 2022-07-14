@@ -6,25 +6,20 @@
 
 ## Usage
 ```py
-from fastapi import FastAPI
+from fastapi import FastAPI, Query
 from faclsbase import API
-from typing import Literal
-
+from typing import List
+from pydantic import Field
 
 app = FastAPI()
 
 
 @app.get('/simple-calc')
-class TestAPI(metaclass=API):
-    a: float
-    b: float
-    op: Literal['+', '-', '*', '/']
-    ops: ClassVar[dict] = {
-        '+': lambda a,b:a+b, '-': lambda a,b:a-b,
-        '/': lambda a,b:a/b, '*': lambda a,b:a*b}
+class SumAPI(metaclass=API):
+    numbers: List[int] = Field(Query(None))
 
     def run(self):
-        return f'={self.ops[self.op](a, b)}'
+        return f'={sum(self.numbers)}'
 ```
 
 # inheritance
