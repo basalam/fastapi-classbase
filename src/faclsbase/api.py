@@ -13,9 +13,10 @@ class API(ModelMetaclass):
 
     @staticmethod
     def convert__init__to_instantiate_and_call_run(_class):
-        instantiate_and_call_run = lambda **kwargs: _class(**kwargs).run()
+        generic_instantiate_and_call_run = lambda **kwargs: _class(**kwargs).run()
+        __init__sign = signature(_class)
         return makefun.create_function(
-            signature(_class), instantiate_and_call_run, _class.__name__)
+            __init__sign, generic_instantiate_and_call_run, _class.__name__)
 
     def __new__(cls, _, bases, dct):
         bases = list(bases)
