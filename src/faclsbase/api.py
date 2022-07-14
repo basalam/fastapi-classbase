@@ -7,6 +7,9 @@ except:
     from base_api import BaseAPI
 
 
+extract_signature = signature
+
+
 class API(ModelMetaclass):
     """
         API is a metaclass that it's goal is
@@ -17,7 +20,7 @@ class API(ModelMetaclass):
     @staticmethod
     def convert__init__to_instantiate_and_call_run(_class):
         generic_instantiate_and_call_run = lambda **kwargs: _class(**kwargs).run()
-        sign = signature(_class)
+        sign = extract_signature(_class)
         return makefun.create_function(
             func_signature=sign,
             func_impl=generic_instantiate_and_call_run,
