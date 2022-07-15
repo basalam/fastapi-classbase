@@ -11,7 +11,7 @@ except:
 class API(ModelMetaclass):
     """
         API is a metaclass that it's goal is
-        coverts `__init__` to a function to call `__init__()` and return `obj.run()`
+        coverts `__init__` to a function that calls `__init__()` and returns `obj.run()`
 
     """
     generic_instantiate_and_call_run = lambda _class: lambda **kwargs: _class(**kwargs).run()
