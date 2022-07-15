@@ -11,8 +11,9 @@ except:
 class API(ModelMetaclass):
     """
         API is a metaclass that it's goal is
-        coverts `__init__` to a function that calls `__init__()` and returns `obj.run()`
-
+        `replace` `class` by a `function` (same `__signature__` as `class` has)
+        that will instantiate from `class` and calls `run()`
+        by default used `pydantic.BaseModel` to generate signature by default
     """
     generic_instantiate_and_call_run = lambda _class: lambda **kwargs: _class(**kwargs).run()
 
