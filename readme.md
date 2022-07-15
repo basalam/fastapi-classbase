@@ -2,7 +2,7 @@
 
 ## install
 
-`pip install git+https://github.com/omidekz/fastapi-classbase`
+`pip install git+https://github.com/basalam/fastapi-classbase`
 
 ## Usage
 
